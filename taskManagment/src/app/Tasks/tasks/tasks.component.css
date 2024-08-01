@@ -1,0 +1,13 @@
+
+/* src/app/example/example.component.css */
+
+/* Ensure label stays white on focus */
+.form-floating .form-control:focus ~ label {
+  color: black;
+  opacity: 1; /* To make sure it's fully opaque */
+}
+
+/* Optional: Keep the label color white in general */
+.form-floating label {
+  color: black;
+}

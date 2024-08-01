@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Sort Tasks</h1>
+<div mat-dialog-content>
+  <mat-checkbox [(ngModel)]="filter.title">Title</mat-checkbox>
+  <mat-checkbox [(ngModel)]="filter.description">Description</mat-checkbox>
+  <mat-checkbox [(ngModel)]="filter.dueDate">Due Date</mat-checkbox>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onApply()">Apply</button>
+</div>

@@ -1,0 +1,23 @@
+
+.form-control:focus{
+  top: 30px;
+  left: 10px;
+  font-size: 15px;
+  color: #007bff;
+
+}
+.form-label{
+  color:blueviolet
+
+}
+
+
+.alert-danger{
+  background-color: #f44336;
+}
+.alert{
+  margin-top: 15px;
+  color:white;
+  margin-bottom:15px;
+  text-align: left;
+}

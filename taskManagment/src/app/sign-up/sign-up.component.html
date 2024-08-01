@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="card w-50">
+    <div class="card-header text-center text-white bg-primary fs-2">
+      Register
+    </div>
+    <div class="alert alert-success alert-dismissible  text-dark fade show m-3" role="alert" *ngIf="formSubmitted">
+      <strong>Success Register!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="card-body">
+      <form #form="ngForm" (ngSubmit)="submit(form)">
+        <div class="mb-3 form-group">
+          <label for="name" class="form-label">Name</label>
+          <input class="form-control" required minlength="2" maxlength="14" type="text" placeholder="Enter Your Name" name="name" [(ngModel)]="formModel.name" #name="ngModel">
+          <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+            <p *ngIf="name.errors?.['required']">Name is required</p>
+            <p *ngIf="name.errors?.['minlength']">Name must be at least 2 characters long</p>
+            <p *ngIf="name.errors?.['maxlength']">Name cannot be more than 7 characters long</p>
+          </div>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" required  class="form-control" aria-describedby="emailHelp" placeholder="Enter Your Email" name="email" [(ngModel)]="formModel.email"  #email="ngModel">
+          <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+            <p *ngIf="email.errors?.['required']">Email is required</p>
+            <p *ngIf="email.errors?.['email']">Invalid email format</p>
+            <p *ngIf="email.errors?.['duplicateEmail']">Email already exists</p>
+          </div>
+        </div>
+        <div class="mb-3 form-group w-100">
+          <label for="inputPassword" class="col-lg-12 form-label text-nowrap">Password</label>
+          <div class="col-sm-12">
+            <input type="password" class="form-control" required  placeholder="Enter Your password" name="password" [(ngModel)]="formModel.password"  #password="ngModel">
+          </div>
+          <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+            <p *ngIf="password.errors?.['required']">Password is required</p>
+            <p *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="text-center ">
+            <button type="submit" class="btn btn-info text-white fs-5">Sign Up</button>
+            <a routerLink="/signIn" class="btn btn-link">Back Sign In</a>
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div>

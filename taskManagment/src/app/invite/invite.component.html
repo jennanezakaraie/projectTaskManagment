@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="card w-50">
+    <div class="card-header text-center text-white bg-primary fs-2">
+      Invite
+    </div>
+    <div class="alert alert-success alert-dismissible text-dark fade show m-3" role="alert" *ngIf="formSubmitted">
+      <strong>Success Register!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="inviteForm">
+
+        <div class="mb-3 form-group">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" formControlName="email" required class="form-control" aria-describedby="emailHelp" placeholder="Enter Your Email" id="email">
+          <div *ngIf="inviteForm.controls['email'].touched && inviteForm.controls['email'].invalid" class="alert alert-danger">
+            <p *ngIf="inviteForm.controls['email'].errors?.['required']">Email is required</p>
+            <p *ngIf="inviteForm.controls['email'].errors?.['email']">Invalid email format</p>
+            <p *ngIf="inviteForm.controls['email'].errors?.['duplicateEmail']">Email already exists</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="text-center">
+            <button type="submit" class="btn btn-info text-white fs-5" (click)="submit()">Create</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

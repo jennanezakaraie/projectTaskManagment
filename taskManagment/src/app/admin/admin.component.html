@@ -1,0 +1,92 @@
+<div *ngIf = "notifications.length>0">
+<div class="container  mt-3" >
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <h2>Notifications</h2>
+  <ul>
+    <li *ngFor="let notification of notifications">
+      {{ notification }}
+    </li>
+  </ul>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+</div>
+</div>
+
+<div class="contaier-fluid">
+  <div class="container">
+    <nav class="navbar bg-primary rounded mt-1">
+      <div class="container-fluid mx-auto">
+          <img  src="assets/admin.png" class="rounded img-fluid" alt="icon admin" style="width: 80px; height: 80px;">
+      <form class="d-flex ms-auto" role="search" [formGroup]="searchUserForm" (ngSubmit)="onSubmit()">
+          <input class="form-control me-2 rounded" type="search" placeholder="Search" aria-label="Search" formControlName="search" style="width: 400px;">
+          <button class="btn btn-success rounded" type="submit">Search</button>
+          <button class="btn btn-info rounded ms-2"  (click)="ListUsers()">ListUsers</button>
+         </form>
+      </div>
+      <button class="btn btn-info  rounded ms-2"  (click)="logOut()">Log Out</button>
+    </nav>
+  </div>
+
+</div>
+
+
+<div class="container mt-2">
+
+
+  <table class="table table-bordered">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Index</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userData; let i = index">
+        <td>{{ (currentPage - 1) * pageSize + i + 1}}</td>
+        <td class="d-flex align-items-center">{{ user.name }}</td>
+        <td class="align-middle">{{ user.email }}</td>
+        <td class="align-middle">
+          <div class="d-flex align-items-center">
+            <button class="btn btn-danger me-2" (click)="deleteUser(user._id)">Delete</button>
+            <button class="btn btn-primary" (click)="openUpdateDialog(user)">Update</button>
+            <button class="btn  btn-success text-white rounded ms-2"  (click)="displayTasksUser(user._id)" >View Tasks</button>
+
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagination controls -->
+<nav aria-label="Page navigation example" class="my-3">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button class="page-link btn btn-warning" (click)="decrementPage()" [disabled]="currentPage === 1">Previous</button>
+    </li>
+    <li class="page-item-info">
+      <span class="page-link custom-page-info">Page {{currentPage}} of {{totalPages}}</span>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <button class="page-link btn btn-light" (click)="incrementPage()" [disabled]="currentPage === totalPages">Next</button>
+    </li>
+  </ul>
+</nav>
+
+
+
+
+<!-- <div *ngIf="notifications.length > 0">
+  <h2>Notifications</h2>
+  <ul>
+    <li *ngFor="let notification of notifications">
+      {{ notification }}
+    </li>
+  </ul>
+</div>
+<div *ngIf="notifications.length === 0">
+  <p>No notifications available.</p>
+</div> -->
